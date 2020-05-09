@@ -13,11 +13,15 @@ header {
 header p {
     margin-left: 15px;
 }
+h4{
+    text-align: center;
+}
 h1 {
     text-align: center;
 }
 button{
     border-radius: 2px;
+    display: inline;
 
 }
 .green{
@@ -31,6 +35,10 @@ button{
     width: 50%;
     border-radius: 12px;
     padding: 4px;
+}
+#displayQuestion{
+    margin: 0 auto;
+    width: 50%;
 }
 #quizbody {
     margin: 0 auto;

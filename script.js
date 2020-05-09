@@ -8,7 +8,7 @@ let quiz = [
             d: 16,
             e: 13
         },
-        answer: "b"
+        answer: "12"
     },
     {
         question: "where do you live?",
@@ -19,7 +19,7 @@ let quiz = [
             d: "uyo",
             e: "kano"
         },
-        answer: "d"
+        answer: "uyo"
     },
     {
         question: "where do you school?",
@@ -30,7 +30,7 @@ let quiz = [
             d: "Air Force Secondary",
             e: "federal Govt college"
         },
-        answer: "c"
+        answer: "pegasus secondary"
     },
     {
         question: "who is the president of Nigeria?",
@@ -41,7 +41,7 @@ let quiz = [
             d: "gowon",
             e: "atiku"
         },
-        answer: "a"
+        answer: "buhari"
     },
     {
         question: "who is the governor of the CBN?",
@@ -52,13 +52,14 @@ let quiz = [
             d: "sanusi lamido",
             e: "Godwin emefele"
         },
-        answer: "e"
+        answer: "Godwin emefele"
     }
 ]
 
 const $displayQuiz = $('#displayQuestion');
+const $scores = $('#scores');
 
-
+let score = 0;
 
 
 
@@ -107,23 +108,30 @@ const $displayQuiz = $('#displayQuestion');
 
 
 
-
-
 const startQuiz = ()=>{
-    console.log(quiz);
+   
     $displayQuiz.empty();
+    $scores.empty();
     let questions=`
     <h3>${quiz[0].question}</h3>
-    <p><input type="radio" name='question1' value='${quiz[0].options.a}'>${quiz[0].options.a}</p>
-    <p><input type="radio" name='question1' value='${quiz[0].options.b}'>${quiz[0].options.b}</p>
-    <p><input type="radio" name='question1' value='${quiz[0].options.c}'>${quiz[0].options.c}</p>
-    <p><input type="radio" name='question1' value='${quiz[0].options.d}'>${quiz[0].options.d}</p>
-    <p><input type="radio" name='question1' value='${quiz[0].options.e}'>${quiz[0].options.e}</p>
+    <p><input type="radio" name='question1' id='question1' value='${quiz[0].options.a}'>${quiz[0].options.a}</p>
+    <p><input type="radio" name='question1' id='question1' value='${quiz[0].options.b}'>${quiz[0].options.b}</p>
+    <p><input type="radio" name='question1' id='question1' value='${quiz[0].options.c}'>${quiz[0].options.c}</p>
+    <p><input type="radio" name='question1' id='question1' value='${quiz[0].options.d}'>${quiz[0].options.d}</p>
+    <p><input type="radio" name='question1' id='question1' value='${quiz[0].options.e}'>${quiz[0].options.e}</p>
     <p></p>
     <button id='next_2' onclick='q2()'>Next question</button>`;
     $displayQuiz.append(questions);
 };
+
+
+
 const q2 = () => {
+    let ans =$('input[name=question1]:checked').val()
+    if (ans === quiz[0].answer){
+        score++;
+    }
+
     $displayQuiz.empty();
     let question2 =`<h3>${quiz[1].question}</h3>
     <p><input type="radio" name='question2' value='${quiz[1].options.a}'>${quiz[1].options.a}</p>
@@ -132,11 +140,15 @@ const q2 = () => {
     <p><input type="radio" name='question2' value='${quiz[1].options.d}'>${quiz[1].options.d}</p>
     <p><input type="radio" name='question2' value='${quiz[1].options.e}'>${quiz[1].options.e}</p>
     <p></p>
-    <button onclick="startQuiz()">Previous question</button>
+    <button onclick="pre()">Previous question</button>
     <button onclick='q3()'>Next question</button>`
-    $displayQuiz.append(question2); 
+    $displayQuiz.append(question2);
 };
 const q3 = () => {
+    let ans =$('input[name=question2]:checked').val()
+    if (ans === quiz[1].answer){
+        score++;
+    }
     $displayQuiz.empty();
     let question3 =`<h3>${quiz[2].question}</h3>
     <p><input type="radio" name='question3' value='${quiz[2].options.a}'>${quiz[2].options.a}</p>
@@ -145,11 +157,15 @@ const q3 = () => {
     <p><input type="radio" name='question3' value='${quiz[2].options.d}'>${quiz[2].options.d}</p>
     <p><input type="radio" name='question3' value='${quiz[2].options.e}'>${quiz[2].options.e}</p>
     <p></p>
-    <button onclick="q2()">Previous question</button>
+    <button onclick="pre()">Previous question</button>
     <button onclick='q4()'>Next question</button>`
-    $displayQuiz.append(question3); 
+    $displayQuiz.append(question3);
 };
 const q4 = () => {
+    let ans =$('input[name=question3]:checked').val()
+    if (ans === quiz[2].answer){
+        score++;
+    }
     $displayQuiz.empty();
     let question4 =`<h3>${quiz[3].question}</h3>
     <p><input type="radio" name='question4' value='${quiz[3].options.a}'>${quiz[3].options.a}</p>
@@ -158,11 +174,15 @@ const q4 = () => {
     <p><input type="radio" name='question4' value='${quiz[3].options.d}'>${quiz[3].options.d}</p>
     <p><input type="radio" name='question4' value='${quiz[3].options.e}'>${quiz[3].options.e}</p>
     <p></p>
-    <button onclick="q3()">Previous question</button>
+    <button onclick="pre()">Previous question</button>
     <button onclick='q5()'>Next question</button>`
     $displayQuiz.append(question4); 
 };
 const q5 = () => {
+    let ans =$('input[name=question4]:checked').val()
+    if (ans === quiz[3].answer){
+        score++;
+    }
     $displayQuiz.empty();
     let question5 =`<h3>${quiz[4].question}</h3>
     <p><input type="radio" name='question5' value='${quiz[4].options.a}'>${quiz[4].options.a}</p>
@@ -171,6 +191,23 @@ const q5 = () => {
     <p><input type="radio" name='question5' value='${quiz[4].options.d}'>${quiz[4].options.d}</p>
     <p><input type="radio" name='question5' value='${quiz[4].options.e}'>${quiz[4].options.e}</p>
     <p></p>
-    <button onclick="q4()">Previous question</button>`
-    $displayQuiz.append(question5); 
+    <button onclick="pre()">Previous question</button>
+    <button onclick="submit()">Submit</button>`
+    $displayQuiz.append(question5);   
 };
+function pre(){
+    $displayQuiz.empty();
+    let verdit = `Your answer has already been submitted therefore you can't edit again. 
+    `
+    $scores.append(verdit + `<p></p><br>you scored ${score} out of ${quiz.length}<p></p><br> <button class="green" onclick="startQuiz()">Restart Quiz</button>`);
+    
+}
+function submit(){
+    let ans =$('input[name=question5]:checked').val()
+    if (ans === quiz[4].answer){
+        score++;
+    }
+    $displayQuiz.empty();
+    let verdit = `You scored ${score} out of ${quiz.length}`
+    $scores.append(verdit);
+}
