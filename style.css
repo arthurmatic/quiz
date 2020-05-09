@@ -16,6 +16,13 @@ header p {
 h1 {
     text-align: center;
 }
+button{
+    border-radius: 2px;
+
+}
+.green{
+    background-color: greenyellow;
+}
 .instructions {
     margin: 0 auto;
     background-color: rgb(127, 127, 204);

@@ -55,44 +55,122 @@ let quiz = [
         answer: "e"
     }
 ]
-let questionOne = document.getElementById('question1');
-let questionTwo = document.getElementById('question2');
-let questionThree = document.getElementById('question3');
-let questionFour = document.getElementById('question4');
-let questionFive = document.getElementById('question5');
-let next = document.getElementById('next'); 
-let previous = document.getElementById('previous'); 
 
-next.addEventListener('click', () => {
-    if (questionOne.style.display = "block") {
-        questionOne.style.display = "none";
-        questionTwo.style.display = "block";
-        previous.style.display = "inline-block";
-    } else if (questionTwo.style.display = "block"){
-        questionThree.style.display = "block";
-        questionTwo.style.display = "none";
-        previous.style.display = "inline-block";
-    } else if (questionThree) {
-        questionThree.style.display = "none";
-        questionFour.style.display = "block";
-        previous.style.display = "inline-block";
-        return next;
-    } else if (questionFour) {
-        questionFive.style.display = "block";
-        questionFour.style.display = "none";
-        previous.style.display = "inline-block";
-        return next;
-    } else {
-        questionFive.style.display = "block";
-        questionFour.style.display = "none";
-        previous.style.display = "inline-block";
-    }
+const $displayQuiz = $('#displayQuestion');
+
+
+
+
+
+
+// let questionOne = document.getElementById('question1');
+// let questionTwo = document.getElementById('question2');
+// let questionThree = document.getElementById('question3');
+// let questionFour = document.getElementById('question4');
+// let questionFive = document.getElementById('question5');
+// let next = document.getElementById('next'); 
+// let previous = document.getElementById('previous'); 
+
+// next.addEventListener('click', () => {
+//     if (questionOne.style.display = "block") {
+//         questionOne.style.display = "none";
+//         questionTwo.style.display = "block";
+//         previous.style.display = "inline-block";
+//     } else if (questionTwo.style.display = "block"){
+//         questionThree.style.display = "block";
+//         questionTwo.style.display = "none";
+//         previous.style.display = "inline-block";
+//     } else if (questionThree) {
+//         questionThree.style.display = "none";
+//         questionFour.style.display = "block";
+//         previous.style.display = "inline-block";
+//         return next;
+//     } else if (questionFour) {
+//         questionFive.style.display = "block";
+//         questionFour.style.display = "none";
+//         previous.style.display = "inline-block";
+//         return next;
+//     } else {
+//         questionFive.style.display = "block";
+//         questionFour.style.display = "none";
+//         previous.style.display = "inline-block";
+//     }
     
-});
-previous.addEventListener('click', () => {
-    questionOne.style.display = "block";
-    questionTwo.style.display = "none";
-})
-for (let i = 0; i < quiz.length; i++) {
-    let questions = quiz[0][0];
-}
+// });
+// previous.addEventListener('click', () => {
+//     questionOne.style.display = "block";
+//     questionTwo.style.display = "none";
+// })
+// for (let i = 0; i < quiz.length; i++) {
+//     let questions = quiz[0][0];
+// }
+
+
+
+
+
+const startQuiz = ()=>{
+    console.log(quiz);
+    $displayQuiz.empty();
+    let questions=`
+    <h3>${quiz[0].question}</h3>
+    <p><input type="radio" name='question1' value='${quiz[0].options.a}'>${quiz[0].options.a}</p>
+    <p><input type="radio" name='question1' value='${quiz[0].options.b}'>${quiz[0].options.b}</p>
+    <p><input type="radio" name='question1' value='${quiz[0].options.c}'>${quiz[0].options.c}</p>
+    <p><input type="radio" name='question1' value='${quiz[0].options.d}'>${quiz[0].options.d}</p>
+    <p><input type="radio" name='question1' value='${quiz[0].options.e}'>${quiz[0].options.e}</p>
+    <p></p>
+    <button id='next_2' onclick='q2()'>Next question</button>`;
+    $displayQuiz.append(questions);
+};
+const q2 = () => {
+    $displayQuiz.empty();
+    let question2 =`<h3>${quiz[1].question}</h3>
+    <p><input type="radio" name='question2' value='${quiz[1].options.a}'>${quiz[1].options.a}</p>
+    <p><input type="radio" name='question2' value='${quiz[1].options.b}'>${quiz[1].options.b}</p>
+    <p><input type="radio" name='question2' value='${quiz[1].options.c}'>${quiz[1].options.c}</p>
+    <p><input type="radio" name='question2' value='${quiz[1].options.d}'>${quiz[1].options.d}</p>
+    <p><input type="radio" name='question2' value='${quiz[1].options.e}'>${quiz[1].options.e}</p>
+    <p></p>
+    <button onclick="startQuiz()">Previous question</button>
+    <button onclick='q3()'>Next question</button>`
+    $displayQuiz.append(question2); 
+};
+const q3 = () => {
+    $displayQuiz.empty();
+    let question3 =`<h3>${quiz[2].question}</h3>
+    <p><input type="radio" name='question3' value='${quiz[2].options.a}'>${quiz[2].options.a}</p>
+    <p><input type="radio" name='question3' value='${quiz[2].options.b}'>${quiz[2].options.b}</p>
+    <p><input type="radio" name='question3' value='${quiz[2].options.c}'>${quiz[2].options.c}</p>
+    <p><input type="radio" name='question3' value='${quiz[2].options.d}'>${quiz[2].options.d}</p>
+    <p><input type="radio" name='question3' value='${quiz[2].options.e}'>${quiz[2].options.e}</p>
+    <p></p>
+    <button onclick="q2()">Previous question</button>
+    <button onclick='q4()'>Next question</button>`
+    $displayQuiz.append(question3); 
+};
+const q4 = () => {
+    $displayQuiz.empty();
+    let question4 =`<h3>${quiz[3].question}</h3>
+    <p><input type="radio" name='question4' value='${quiz[3].options.a}'>${quiz[3].options.a}</p>
+    <p><input type="radio" name='question4' value='${quiz[3].options.b}'>${quiz[3].options.b}</p>
+    <p><input type="radio" name='question4' value='${quiz[3].options.c}'>${quiz[3].options.c}</p>
+    <p><input type="radio" name='question4' value='${quiz[3].options.d}'>${quiz[3].options.d}</p>
+    <p><input type="radio" name='question4' value='${quiz[3].options.e}'>${quiz[3].options.e}</p>
+    <p></p>
+    <button onclick="q3()">Previous question</button>
+    <button onclick='q5()'>Next question</button>`
+    $displayQuiz.append(question4); 
+};
+const q5 = () => {
+    $displayQuiz.empty();
+    let question5 =`<h3>${quiz[4].question}</h3>
+    <p><input type="radio" name='question5' value='${quiz[4].options.a}'>${quiz[4].options.a}</p>
+    <p><input type="radio" name='question5' value='${quiz[4].options.b}'>${quiz[4].options.b}</p>
+    <p><input type="radio" name='question5' value='${quiz[4].options.c}'>${quiz[4].options.c}</p>
+    <p><input type="radio" name='question5' value='${quiz[4].options.d}'>${quiz[4].options.d}</p>
+    <p><input type="radio" name='question5' value='${quiz[4].options.e}'>${quiz[4].options.e}</p>
+    <p></p>
+    <button onclick="q4()">Previous question</button>`
+    $displayQuiz.append(question5); 
+};
